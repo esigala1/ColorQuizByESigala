@@ -1,11 +1,13 @@
 package net.bplaced.esigala1.colorquiz;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +21,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Display the ActionBar Icon...
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        setTitle("  " + getString(R.string.app_name));
         // Retrieve the widget from the UI.
         etName = (EditText) findViewById(R.id.edit_text_name);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ((TextView)findViewById(R.id.text_view_welcome)).setLetterSpacing((float)0.2);
+        }
     }
 
     // When the button "Quiz" is pressed, execute the following method.

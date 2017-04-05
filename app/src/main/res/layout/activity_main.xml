@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/level1"
+        android:layout_margin="@dimen/level2"
         android:lineSpacingExtra="@dimen/level1"
         android:text="@string/welcome"
         android:textAlignment="center"
@@ -26,8 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/level1">
+        android:layout_marginTop="@dimen/level1"
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/text_view_main_name"
@@ -48,16 +48,18 @@
     </LinearLayout>
 
     <Button
-        android:layout_marginTop="@dimen/level1"
-        android:onClick="onClickStart"
-        android:layout_margin="@dimen/level3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/level3"
+        android:layout_marginTop="@dimen/level1"
+        android:onClick="onClickStart"
+        android:paddingBottom="@dimen/level2"
         android:paddingLeft="@dimen/level6"
         android:paddingRight="@dimen/level6"
         android:paddingTop="@dimen/level2"
-        android:paddingBottom="@dimen/level2"
-        android:layout_gravity="center"
-        android:text="@string/btn_quiz"/>
+        android:text="@string/btn_quiz"
+        android:textSize="@dimen/text_size_h3"
+        android:textStyle="bold" />
 
 </LinearLayout>

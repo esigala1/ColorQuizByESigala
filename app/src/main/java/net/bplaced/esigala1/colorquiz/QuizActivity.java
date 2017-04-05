@@ -1,11 +1,10 @@
 package net.bplaced.esigala1.colorquiz;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends MainActivity {
 
     TextView tvName;
     String name;
@@ -14,9 +13,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        // Retrieve the widget from the UI.
         tvName = (TextView) findViewById(R.id.text_view_quiz_name);
-
         // If there is not a saved state, then...
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
