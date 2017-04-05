@@ -1,8 +1,11 @@
 package net.bplaced.esigala1.colorquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuizActivity extends MainActivity {
 
@@ -28,7 +31,7 @@ public class QuizActivity extends MainActivity {
             name = savedInstanceState.getString(MainActivity.NAME);
         }
         // Set the Player's name.
-        tvName.setText(getResources().getString(R.string.player) + ": " + name);
+        tvName.setText(getResources().getString(R.string.player) + " : " + name);
     }
 
     @Override
@@ -36,6 +39,12 @@ public class QuizActivity extends MainActivity {
         super.onSaveInstanceState(outState);
         Log.i(MainActivity.TAG_INFO, "onSaveInstanceState");
         outState.putString(MainActivity.NAME, name);
+    }
+
+    // When the button "Start" is pressed, execute the following method.
+    public void onClickStart(View view){
+        Log.i(TAG_INFO, "Button Start Pressed.");
+
     }
 
 

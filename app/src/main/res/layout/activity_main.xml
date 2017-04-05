@@ -55,10 +55,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_margin="@dimen/level3"
         android:layout_marginTop="@dimen/level1"
-        android:onClick="onClickStart"
+        android:onClick="onClickQuiz"
         android:paddingBottom="@dimen/level3"
         android:paddingTop="@dimen/level3"
         android:text="@string/btn_quiz"

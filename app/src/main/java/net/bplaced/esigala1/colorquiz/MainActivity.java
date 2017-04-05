@@ -34,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // When the button "Quiz" is pressed, execute the following method.
-    public void onClickStart(View view){
-        Log.i(TAG_INFO, "Button Start Pressed.");
-        Log.i(TAG_INFO, "Name = " + etName);
+    public void onClickQuiz(View view){
+        Log.i(TAG_INFO, "Button Quiz Pressed.");
         // If the name is not entered, then...
         if (etName.length() == 0){
             // Display message.

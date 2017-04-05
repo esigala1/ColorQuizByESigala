@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,14 +10,28 @@
     tools:context=".QuizActivity">
 
     <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:id="@+id/text_view_quiz_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/level1"
-        android:layout_gravity="center"
+        android:layout_margin="@dimen/level2"
         android:text="@string/player"
         android:textAlignment="center"
-        android:textSize="@dimen/text_size_h3" />
+        android:textSize="@dimen/text_size_h1"
+        android:textStyle="italic"/>
 
+    <Button
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/level3"
+        android:layout_marginTop="@dimen/level1"
+        android:onClick="onClickStart"
+        android:paddingBottom="@dimen/level3"
+        android:paddingTop="@dimen/level3"
+        android:text="@string/btn_start"
+        android:textSize="@dimen/text_size_h3"
+        android:textStyle="bold" />
 
-</LinearLayout>
+</RelativeLayout>
