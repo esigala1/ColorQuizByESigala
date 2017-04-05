@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_view_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/level1"
+        android:lineSpacingExtra="@dimen/level1"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="@dimen/text_size_huge"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/level1">
+
+        <TextView
+            android:id="@+id/text_view_main_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/level1"
+            android:gravity="center_vertical"
+            android:text="@string/enter_your_name"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_h3" />
+
+        <EditText
+            android:id="@+id/edit_text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="@dimen/level1"
+        android:onClick="onClickStart"
+        android:layout_margin="@dimen/level3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/level6"
+        android:paddingRight="@dimen/level6"
+        android:paddingTop="@dimen/level2"
+        android:paddingBottom="@dimen/level2"
+        android:layout_gravity="center"
+        android:text="@string/btn_quiz"/>
+
+</LinearLayout>
