@@ -8,4 +8,7 @@
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextPrimaryInverse">#2b272c</color>
     <color name="colorButton">#881cac</color>
+    <color name="color_btn_next">#1478a3</color>
+    <color name="green">#24a118</color>
+    <color name="red">#ca161c</color>
 </resources>

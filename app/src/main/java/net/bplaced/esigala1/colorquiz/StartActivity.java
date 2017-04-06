@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.List;
 
 public class StartActivity extends MainActivity {
 
@@ -18,6 +17,7 @@ public class StartActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(MainActivity.TAG_INFO, "StartActivity onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         // Retrieve the widget from the UI.
@@ -42,8 +42,8 @@ public class StartActivity extends MainActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.i(MainActivity.TAG_INFO, "StartActivity onSaveInstanceState()");
         super.onSaveInstanceState(outState);
-        Log.i(MainActivity.TAG_INFO, "onSaveInstanceState");
         outState.putString(NAME, name);
         outState.putInt(QuizActivity.SCORE, score);
     }

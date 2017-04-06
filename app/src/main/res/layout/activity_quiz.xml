@@ -44,7 +44,7 @@
             <View
                 android:id="@+id/view_color"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/level7"
+                android:layout_height="@dimen/level4"
                 android:layout_margin="@dimen/level3"
                 android:background="@color/colorTextPrimary"
                 android:padding="10dp" />
@@ -83,6 +83,7 @@
                 android:id="@+id/text_view_answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/level3"
                 android:text="@string/quiz_submit_answer"
@@ -111,6 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/level3"
+        android:background="@color/color_btn_next"
         android:onClick="onClickNext"
         android:paddingBottom="@dimen/level3"
         android:paddingTop="@dimen/level3"
