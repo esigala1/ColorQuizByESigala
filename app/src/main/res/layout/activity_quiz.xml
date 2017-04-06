@@ -3,89 +3,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context=".QuizActivity">
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/text_view_quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/level2"
         android:text="@string/quiz_num"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_h1"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
         android:layout_weight="1">
 
-        <TextView
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/level1"
-            android:layout_height="wrap_content"
-            android:text="@string/quiz_question"
-            android:textSize="@dimen/text_size_h2"
-            android:textStyle="italic"/>
-
-        <View
-            android:id="@+id/view_color"
-            android:padding="10dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/level3"
-            android:background="@color/colorTextPrimary"
-            android:layout_height="@dimen/level7" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/level1"
+            android:orientation="vertical">
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:padding="@dimen/level1"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radio_button_1"
-                android:text="@string/answer_item"/>
+                android:layout_marginLeft="@dimen/level1"
+                android:text="@string/quiz_question"
+                android:textSize="@dimen/text_size_h2"
+                android:textStyle="italic" />
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <View
+                android:id="@+id/view_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/level7"
+                android:layout_margin="@dimen/level3"
+                android:background="@color/colorTextPrimary"
+                android:padding="10dp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_buttons"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radio_button_2"
-                android:text="@string/answer_item"/>
+                android:orientation="horizontal"
+                android:padding="@dimen/level1">
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                <RadioButton
+                    android:id="@+id/radio_button_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/answer_item" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/answer_item" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/answer_item" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/text_view_answer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radio_button_3"
-                android:text="@string/answer_item"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/level3"
+                android:text="@string/quiz_submit_answer"
+                android:textSize="@dimen/text_size_h3"
+                android:textStyle="italic" />
 
-        </RadioGroup>
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
-        android:layout_centerVertical="true"
+        android:id="@+id/button_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_margin="@dimen/level3"
-        android:layout_marginTop="@dimen/level1"
+        android:onClick="onClickSubmit"
         android:paddingBottom="@dimen/level3"
         android:paddingTop="@dimen/level3"
         android:text="@string/btn_submit"
         android:textSize="@dimen/text_size_h3"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/level3"
+        android:onClick="onClickNext"
+        android:paddingBottom="@dimen/level3"
+        android:paddingTop="@dimen/level3"
+        android:text="@string/btn_next"
+        android:textSize="@dimen/text_size_h3"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </LinearLayout>

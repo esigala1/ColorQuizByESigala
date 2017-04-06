@@ -9,8 +9,14 @@
     <string name="btn_start">Start the quiz</string>
     <string name="quiz_num">Quiz <xliff:g id="currentQuiz" example="1">%d</xliff:g>/<xliff:g id="totalQuizNum" example="17">%d</xliff:g></string>
     <string name="quiz_question">What is the following color?</string>
+    <string name="quiz_submit_answer">Choose an answer...</string>
     <string name="btn_submit">Submit</string>
+    <string name="btn_next">Next</string>
     <string name="color">Color</string>
     <string name="answer_item">Answer</string>
-    <string name="error_quiz_colors_list">Unable to Start the Quiz... Sorry!!</string>
+    <string name="msg_error_quiz_colors_list">Unable to Start the Quiz... Sorry!!</string>
+    <string name="msg_choose_answer">Please choose an answer first...</string>
+    <string name="msg_system_error">Sorry... Could not initialize the game correctly.</string>
+    <string name="msg_correct_answer">Correct answer!!</string>
+    <string name="msg_wrong_answer">Wrong answer... It is <xliff:g id="correctAnswer" example="Yellow">%s</xliff:g>!!</string>
     </resources>
