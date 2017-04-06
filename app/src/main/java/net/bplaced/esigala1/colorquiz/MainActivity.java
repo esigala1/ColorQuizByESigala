@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NAME = "name";
     public static final String TAG_INFO = "Info";
 
     EditText etName;
@@ -44,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         // Create an intent to start another activity.
-        Intent intent = new Intent(this, QuizActivity.class);
+        Intent intent = new Intent(this, StartActivity.class);
         // Add the Name the intent (ID, value)
-        intent.putExtra(NAME, etName.getText().toString());
-        // Start an instance of the "QuizActivity" specified by the intent.
+        intent.putExtra(StartActivity.NAME, etName.getText().toString());
+        // Start an instance of the "StartActivity" specified by the intent.
         startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Color Quiz</string>
     <string name="welcome">Welcome</string>
     <string name="enter_your_name">Enter your name:</string>
@@ -7,4 +7,10 @@
     <string name="msg_enter_name">Please enter your name first.</string>
     <string name="player">Player</string>
     <string name="btn_start">Start the quiz</string>
-</resources>
+    <string name="quiz_num">Quiz <xliff:g id="currentQuiz" example="1">%d</xliff:g>/<xliff:g id="totalQuizNum" example="17">%d</xliff:g></string>
+    <string name="quiz_question">What is the following color?</string>
+    <string name="btn_submit">Submit</string>
+    <string name="color">Color</string>
+    <string name="answer_item">Answer</string>
+    <string name="error_quiz_colors_list">Unable to Start the Quiz... Sorry!!</string>
+    </resources>

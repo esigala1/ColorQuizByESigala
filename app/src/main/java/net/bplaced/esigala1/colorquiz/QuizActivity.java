@@ -1,50 +1,187 @@
 package net.bplaced.esigala1.colorquiz;
 
-import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class QuizActivity extends MainActivity {
+import java.util.ArrayList;
+import java.util.Random;
 
-    TextView tvName;
-    String name;
+public class QuizActivity extends AppCompatActivity {
+
+    public static final String SCORE = "score";
+    public static final String QUIZ_NUM = "quiz_num";
+
+    TextView tvTitle;
+    View vColor;
+    RadioButton rb1, rb2, rb3;
+
+    // ArrayList to keep All Quiz Colors and the Rest of the Quiz Colors.
+    ArrayList<String[]> quizColorsAll, quizColorsRest;
+    // Declare a Random object.
+    Random r;
+    int minColor = 0, maxColor, maxColorCurrent, minRadioBTN = 1, maxRadioBTN = 3;
+
+    int score, currentQuizNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        // Retrieve the widget from the UI.
-        tvName = (TextView) findViewById(R.id.text_view_quiz_name);
+
+        tvTitle = (TextView) findViewById(R.id.text_view_quiz_title);
+        vColor = (View) findViewById(R.id.view_color);
+        rb1 = (RadioButton) findViewById(R.id.radio_button_1);
+        rb2 = (RadioButton) findViewById(R.id.radio_button_2);
+        rb3 = (RadioButton) findViewById(R.id.radio_button_3);
+
+        // Initialize All Quiz Colors.
+        quizColorsAll = initializeQuizColors();
+        // Initialize The "quizColorsRest".
+        quizColorsRest = new ArrayList<>();
+        // Add the content of "quizColorsAll" into "quizColorsRest".
+        quizColorsRest.addAll(quizColorsAll);
+        // As max color set the total number of all colors.
+        maxColor = quizColorsAll.size();
+        // Initialize the random object.
+        r = new Random();
+
         // If there is not a saved state, then...
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras != null) {
-                name = extras.getString(MainActivity.NAME);
-            }
+            score = 0;
+            currentQuizNum = 1;
         }
         // There is a saved state, so restore it...
         else
         {
-            name = savedInstanceState.getString(MainActivity.NAME);
+            score = savedInstanceState.getInt(SCORE);
+            currentQuizNum = savedInstanceState.getInt(QUIZ_NUM);
         }
-        // Set the Player's name.
-        tvName.setText(getResources().getString(R.string.player) + " : " + name);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(MainActivity.TAG_INFO, "onSaveInstanceState");
-        outState.putString(MainActivity.NAME, name);
+        outState.putInt(SCORE, score);
+        outState.putInt(QUIZ_NUM, currentQuizNum);
     }
 
-    // When the button "Start" is pressed, execute the following method.
-    public void onClickStart(View view){
-        Log.i(TAG_INFO, "Button Start Pressed.");
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        // Set the title.
+        tvTitle.setText(getResources().getString(R.string.quiz_num, currentQuizNum, maxColor));
+        // Current maxCurrent number of colors.
+        maxColorCurrent = quizColorsRest.size();
+        // Get a random number [min, maxCurrent] for quiz color.
+        int randomColor = r.nextInt(maxColorCurrent - minColor + 1) + minColor;
+        // Set the Name of the Quiz Color.
+        String quizColorName = quizColorsRest.get(randomColor)[0];
+        // Set the Value of the Quiz color.
+        vColor.setBackgroundColor(Color.parseColor(quizColorsAll.get(randomColor)[1]));
+        // Get a random number [min, maxCurrent] for radio button.
+        int randomRadioButton = r.nextInt(maxRadioBTN - minRadioBTN + 1) + minRadioBTN;
+        // Set the texts in the radio buttons.
+        setRadioBtnTexts(quizColorName, randomRadioButton);
+    }
+
+    /**
+     *  Method to get the Quiz Colors.
+     *  Note: String[] consists of 2 elements:
+     *  String[0] => The Name of the Color
+     *  String[1] => The Value of the Color
+     */
+    public ArrayList<String[]> initializeQuizColors(){
+        // An ArrayList to keep the Quiz Colors.
+        ArrayList<String[]> quizArrayColors = new ArrayList<>();
+        final String[] colorName = getResources().getStringArray(R.array.colorNames);
+        final String[] colorValue = getResources().getStringArray(R.array.colorValues);
+        // If the array of Strings is not empty and both arrays have the same length, then...
+        if (colorName.length != 0 && colorName.length == colorValue.length){
+            for (int i = 0; i < colorName.length; i++){
+                // Create a 2 dimensional array to keep the Name and the Value of the Color.
+                String[] currentColor = new String[2];
+                currentColor[0] = colorName[i];   // The Name of the current Color
+                currentColor[1] = colorValue[i];  // The Value of the current Color
+                // Add the current Color into the ArrayList.
+                quizArrayColors.add(currentColor);
+            }
+        }
+        else
+        {
+            // Display a message.
+            Toast.makeText(this, getResources().getString(R.string.error_quiz_colors_list), Toast.LENGTH_SHORT).show();
+            // Close this activity and go back to the previous activity.
+            finish();
+        }
+        // Return the ArrayList.
+        return quizArrayColors;
+    }
+
+    /**
+     * This method is called to set the texts in the radio buttons.
+     */
+    public void setRadioBtnTexts(String quizColorName, int radioBtnPosition){
+
+        // *** Get a 2nd random color ** //
+
+        // Get a new random number [min, maxCurrent] for another color name.
+        int rndColorPosition2 = r.nextInt(maxColor - minColor + 1) + minColor;
+        // Set the Name of the new random Color.
+        String rndColorName2 = quizColorsAll.get(rndColorPosition2)[0];
+        // While the name of the new random Color equals to the quiz color, find a new one...
+        while (rndColorName2.equals(quizColorName)){
+            // Get a new random number [min, maxCurrent] for other color name.
+            rndColorPosition2 = r.nextInt(maxColor - minColor + 1) + minColor;
+            // Set the Name of the new random Color.
+            rndColorName2 = quizColorsAll.get(rndColorPosition2)[0];
+        }
+
+        // *** Get a 3rd random color ** //
+
+        // Get a new random number [min, maxCurrent] for another color name.
+        int rndColorPosition3 = r.nextInt(maxColor - minColor + 1) + minColor;
+        // Set the Name of the new random Color.
+        String rndColorName3 = quizColorsAll.get(rndColorPosition3)[0];
+        // While the name of the new random Color equals to the quiz color or to the 2nd random
+        // color, then find a new one...
+        while (rndColorName3.equals(quizColorName) || rndColorName3.equals(rndColorName2)){
+            // Get a new random number [min, maxCurrent] for other color name.
+            rndColorPosition3 = r.nextInt(maxColor - minColor + 1) + minColor;
+            // Set the Name of the new random Color.
+            rndColorName3 = quizColorsAll.get(rndColorPosition3)[0];
+        }
+
+        // *** Set the texts in the radio buttons ** //
+
+        // If the quiz color is in the 1st radio button, then...
+        if (radioBtnPosition == 1)
+        {
+            rb1.setText(quizColorName);
+            rb2.setText(quizColorsAll.get(rndColorPosition2)[0]);
+            rb3.setText(quizColorsAll.get(rndColorPosition3)[0]);
+        }
+        // If the quiz color is in the 1st radio button, then...
+        else if (radioBtnPosition == 2)
+        {
+            rb1.setText(quizColorsAll.get(rndColorPosition2)[0]);
+            rb2.setText(quizColorName);
+            rb3.setText(quizColorsAll.get(rndColorPosition3)[0]);
+        }
+        // The quiz color is in the 3rd radio button, so...
+        else
+        {
+            rb1.setText(quizColorsAll.get(rndColorPosition2)[0]);
+            rb2.setText(quizColorsAll.get(rndColorPosition3)[0]);
+            rb3.setText(quizColorName);
+        }
     }
 
 
