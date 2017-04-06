@@ -17,8 +17,6 @@
         <item name="Cyan">Cyan</item>
         <item name="Turquoise">Turquoise</item>
         <item name="Azure">Azure</item>
-        <item name="Lavender">Lavender</item>
-        <item name="Silver">Silver</item>
     </string-array>
 
     <string-array name="colorValues">
@@ -37,8 +35,6 @@
         <item name="Cyan">#00FFFF</item>
         <item name="Turquoise">#40E0D0</item>
         <item name="Azure">#F0FFFF</item>
-        <item name="Lavender">#E6E6FA</item>
-        <item name="Silver">#C0C0C0</item>
     </string-array>
 
 </resources>

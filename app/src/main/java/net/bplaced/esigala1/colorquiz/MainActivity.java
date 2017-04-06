@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG_INFO = "Info";
+    public static final String NAME = "name";
 
     EditText etName;
 
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         }
         // Create an intent to start another activity.
         Intent intent = new Intent(this, StartActivity.class);
-        // Add the Name the intent (ID, value)
-        intent.putExtra(StartActivity.NAME, etName.getText().toString());
+        // Add the Name to the intent (ID, value)
+        intent.putExtra(NAME, etName.getText().toString());
         // Start an instance of the "StartActivity" specified by the intent.
         startActivity(intent);
     }

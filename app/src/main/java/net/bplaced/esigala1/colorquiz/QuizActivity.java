@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class QuizActivity extends AppCompatActivity {
+// Note: Inherit from the super class "MainActivity" the constants "TAG_INFO" and "NAME".
+public class QuizActivity extends MainActivity {
 
     public static final String SCORE = "score";
     public static final String QUIZ_NUM = "quiz_num";
@@ -27,9 +27,8 @@ public class QuizActivity extends AppCompatActivity {
     RadioGroup rgButtons;
     RadioButton rb1, rb2, rb3;
     Button btnSubmit, btnNext;
-    // Declare a Random object.
+    String name;
     Random r;
-
     QuizItem quizItem;
 
     // ArrayList to keep All Quiz Colors and the Rest of the Quiz Colors.
@@ -40,7 +39,7 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onCreate()");
+        Log.i(TAG_INFO, "QuizActivity onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
@@ -66,14 +65,19 @@ public class QuizActivity extends AppCompatActivity {
         maxColor = quizColorsAll.size() - 1;
         // Initialize the random object.
         r = new Random();
-        // If there is not a saved state, then...
+        // If there is no saved state, then...
         if (savedInstanceState == null) {
             score = 0;
             currentQuizNum = 1;
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                name = extras.getString(NAME);
+            }
         }
         // There is a saved state, so restore it...
         else
         {
+            name = savedInstanceState.getString(NAME);
             score = savedInstanceState.getInt(SCORE);
             currentQuizNum = savedInstanceState.getInt(QUIZ_NUM);
         }
@@ -81,8 +85,9 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onSaveInstanceState()");
+        Log.i(TAG_INFO, "QuizActivity onSaveInstanceState()");
         super.onSaveInstanceState(outState);
+        outState.putString(NAME, name);
         outState.putInt(SCORE, score);
         outState.putInt(QUIZ_NUM, currentQuizNum);
 
@@ -91,7 +96,7 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onResume()");
+        Log.i(TAG_INFO, "QuizActivity onResume()");
         super.onResume();
         // Display a new quiz.
         displayNewQuiz();
@@ -99,19 +104,19 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onPause()");
+        Log.i(TAG_INFO, "QuizActivity onPause()");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onStop()");
+        Log.i(TAG_INFO, "QuizActivity onStop()");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.i(MainActivity.TAG_INFO, "QuizActivity onDestroy()");
+        Log.i(TAG_INFO, "QuizActivity onDestroy()");
         super.onDestroy();
     }
 
@@ -152,9 +157,9 @@ public class QuizActivity extends AppCompatActivity {
      *  Method to display a new quiz.
      */
     private void displayNewQuiz(){
-        Log.i(MainActivity.TAG_INFO, "====================================================");
-        Log.i(MainActivity.TAG_INFO, "Quiz = " + currentQuizNum + "/" + quizColorsAll.size());
-        Log.i(MainActivity.TAG_INFO, "quizColorsRest.size() = " + quizColorsRest.size());
+        Log.i(TAG_INFO, "====================================================");
+        Log.i(TAG_INFO, "Quiz = " + currentQuizNum + "/" + quizColorsAll.size());
+        Log.i(TAG_INFO, "quizColorsRest.size() = " + quizColorsRest.size());
         // Initialize the QuizItem object.
         quizItem = new QuizItem();
         // Set the title.
@@ -169,8 +174,8 @@ public class QuizActivity extends AppCompatActivity {
      * This method is called to set the texts in the radio buttons.
      */
     public void setRadioBtnTexts(){
-        Log.i(MainActivity.TAG_INFO, "Correct color = " + quizItem.getQuizColorName());
-        Log.i(MainActivity.TAG_INFO, "Random colors = "
+        Log.i(TAG_INFO, "Correct color = " + quizItem.getQuizColorName());
+        Log.i(TAG_INFO, "Random colors = "
                 + quizItem.getRndColorName2() + " & " + quizItem.getRndColorName3());
 
         // Get a random number [min, maxCurrent] for a radio button to put the correct answer.
@@ -279,7 +284,7 @@ public class QuizActivity extends AppCompatActivity {
                 finish();
                 // break;
         }
-        Log.i(MainActivity.TAG_INFO, "Current score = " + score);
+        Log.i(TAG_INFO, "Current score = " + score);
     }
 
     /**
@@ -314,12 +319,12 @@ public class QuizActivity extends AppCompatActivity {
             // If the score is above the average number of quiz, then...
             if (score > (float) maxColor / 2)
             {
-                textMessage = getResources().getString(R.string.msg_well_done, score);
+                textMessage = getResources().getString(R.string.msg_well_done, name, score);
             }
             // The score is below the average number of quiz, so...
             else
             {
-                textMessage = getResources().getString(R.string.msg_not_so_good, score);
+                textMessage = getResources().getString(R.string.msg_not_so_good, name, score);
             }
             // Display message.
             messageShow(getResources().getString(R.string.msg_end_title), textMessage);
@@ -342,6 +347,8 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 // Actions to perform when the "OK" button is clicked.
+                // Close this activity and go back to the previous activity.
+                finish();
             }
         });
         // "AlertDialog" => A subclass of Dialog that can display one, two or three buttons.
@@ -350,6 +357,5 @@ public class QuizActivity extends AppCompatActivity {
         // Display the alert dialog.
         dialog.show();
     }
-
 
 }
