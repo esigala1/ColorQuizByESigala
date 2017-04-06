@@ -1,7 +1,9 @@
 package net.bplaced.esigala1.colorquiz;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     public static ArrayList<String[]> quizColorsAll, quizColorsRest;
     public static int maxColor;
     int minRadioBTN = 1, maxRadioBTN = 3;
-    int score, currentQuizNum, posOfCorrectAnswer;
+    int score, currentQuizNum, radioBtnPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,8 +126,8 @@ public class QuizActivity extends AppCompatActivity {
         ArrayList<String[]> quizArrayColors = new ArrayList<>();
         final String[] colorName = getResources().getStringArray(R.array.colorNames);
         final String[] colorValue = getResources().getStringArray(R.array.colorValues);
-        // If the array of Strings is not empty and both arrays have the same length, then...
-        if (colorName.length != 0 && colorName.length == colorValue.length){
+        // If the array has at least 3 colors and both arrays have the same length, then...
+        if (colorName.length >= 3 && colorName.length == colorValue.length){
             for (int i = 0; i < colorName.length; i++){
                 // Create a 2 dimensional array to keep the Name and the Value of the Color.
                 String[] currentColor = new String[2];
@@ -153,29 +155,33 @@ public class QuizActivity extends AppCompatActivity {
         Log.i(MainActivity.TAG_INFO, "====================================================");
         Log.i(MainActivity.TAG_INFO, "Quiz = " + currentQuizNum + "/" + quizColorsAll.size());
         Log.i(MainActivity.TAG_INFO, "quizColorsRest.size() = " + quizColorsRest.size());
-        // Initialize a QuizItem object.
+        // Initialize the QuizItem object.
         quizItem = new QuizItem();
         // Set the title.
         tvTitle.setText(getResources().getString(R.string.quiz_num, currentQuizNum, maxColor + 1));
         // Set the Value of the Quiz color in the View.
         vColor.setBackgroundColor(Color.parseColor(quizItem.getQuizColorValue()));
-        // Get a random number [min, maxCurrent] for a radio button to put the correct answer.
-        posOfCorrectAnswer = r.nextInt(maxRadioBTN - minRadioBTN + 1) + minRadioBTN;
         // Set the texts in the radio buttons.
-        setRadioBtnTexts(quizItem.getQuizColorName(), posOfCorrectAnswer);
+        setRadioBtnTexts();
     }
 
     /**
      * This method is called to set the texts in the radio buttons.
      */
-    public void setRadioBtnTexts(String quizColorName, int radioBtnPosition){
+    public void setRadioBtnTexts(){
+        Log.i(MainActivity.TAG_INFO, "Correct color = " + quizItem.getQuizColorName());
+        Log.i(MainActivity.TAG_INFO, "Random colors = "
+                + quizItem.getRndColorName2() + " & " + quizItem.getRndColorName3());
+
+        // Get a random number [min, maxCurrent] for a radio button to put the correct answer.
+        radioBtnPosition = r.nextInt(maxRadioBTN - minRadioBTN + 1) + minRadioBTN;
 
         // *** Set the texts in the radio buttons ** //
 
         // If the quiz color is in the 1st radio button, then...
         if (radioBtnPosition == 1)
         {
-            rb1.setText(quizColorName);
+            rb1.setText(quizItem.getQuizColorName());
             rb2.setText(quizItem.getRndColorName2());
             rb3.setText(quizItem.getRndColorName3());
         }
@@ -183,7 +189,7 @@ public class QuizActivity extends AppCompatActivity {
         else if (radioBtnPosition == 2)
         {
             rb1.setText(quizItem.getRndColorName2());
-            rb2.setText(quizColorName);
+            rb2.setText(quizItem.getQuizColorName());
             rb3.setText(quizItem.getRndColorName3());
         }
         // The quiz color is in the 3rd radio button, so...
@@ -191,7 +197,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             rb1.setText(quizItem.getRndColorName2());
             rb2.setText(quizItem.getRndColorName3());
-            rb3.setText(quizColorName);
+            rb3.setText(quizItem.getQuizColorName());
         }
     }
 
@@ -200,6 +206,9 @@ public class QuizActivity extends AppCompatActivity {
      */
     private void displayAnswer(boolean isCorrect){
         if (isCorrect){
+            // Increase the score by 1.
+            score++;
+            // Display message.
             tvAnswer.setText(getResources().getString(R.string.msg_correct_answer));
             tvAnswer.setTextColor(ContextCompat.getColor(this, R.color.green));
         }
@@ -232,7 +241,7 @@ public class QuizActivity extends AppCompatActivity {
         btnNext.setVisibility(View.VISIBLE);
 
         // Check if correct answer is selected.
-        switch (posOfCorrectAnswer){
+        switch (radioBtnPosition){
             // The correct answer is in the 1st radio button...
             case 1:
                 if (rb1.isChecked()){
@@ -270,34 +279,76 @@ public class QuizActivity extends AppCompatActivity {
                 finish();
                 // break;
         }
-
+        Log.i(MainActivity.TAG_INFO, "Current score = " + score);
     }
 
     /**
      * This method is called when the button "Next" is clicked.
      */
     public void onClickNext(View view){
-        // If this is the last quiz, then...
-        if (currentQuizNum == maxColor + 1){
-            // Display a message.
-            Toast.makeText(this, "END", Toast.LENGTH_SHORT).show();
+        // If this is the last question, then...
+        if (currentQuizNum < maxColor + 1){
+            // Remove the color from the list with the rest quiz colors.
+            quizColorsRest.remove(quizItem.getCurrentPosition());
+            // Increase the number of the current quiz.
+            currentQuizNum++;
+            // Uncheck all radio buttons.
+            rgButtons.clearCheck();
+            // Enable the Radio Buttons.
+            rb1.setEnabled(true);
+            rb2.setEnabled(true);
+            rb3.setEnabled(true);
+            tvAnswer.setText(getResources().getString(R.string.quiz_submit_answer));
+            tvAnswer.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            // Display a new quiz.
+            displayNewQuiz();
+            // Hide the Next Button.
+            btnNext.setVisibility(View.GONE);
+            // Display the Submit Button.
+            btnSubmit.setVisibility(View.VISIBLE);
         }
-        // Increase the number of the current quiz.
-        currentQuizNum++;
-        // Uncheck all radio buttons.
-        rgButtons.clearCheck();
-        // Enable the Radio Buttons.
-        rb1.setEnabled(true);
-        rb2.setEnabled(true);
-        rb3.setEnabled(true);
-        tvAnswer.setText(getResources().getString(R.string.quiz_submit_answer));
-        tvAnswer.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        // Display a new quiz.
-        displayNewQuiz();
-        // Hide the Next Button.
-        btnNext.setVisibility(View.GONE);
-        // Display the Submit Button.
-        btnSubmit.setVisibility(View.VISIBLE);
+        // This is the last question, so...
+        else
+        {
+            String textMessage = "";
+            // If the score is above the average number of quiz, then...
+            if (score > (float) maxColor / 2)
+            {
+                textMessage = getResources().getString(R.string.msg_well_done, score);
+            }
+            // The score is below the average number of quiz, so...
+            else
+            {
+                textMessage = getResources().getString(R.string.msg_not_so_good, score);
+            }
+            // Display message.
+            messageShow(getResources().getString(R.string.msg_end_title), textMessage);
+        }
+    }
+
+
+    // A method to display an alert dialog.
+    public void messageShow(String title, String message){
+        // Create a builder for an alert dialog, that uses the default alert dialog theme.
+        AlertDialog.Builder aBuilder = new AlertDialog.Builder(this);
+        // Set the title displayed in the Dialog - OPTIONAL
+        aBuilder.setTitle(title);
+        // Set the message to display.
+        aBuilder.setMessage(message);
+        aBuilder.setCancelable(false);
+        // Set a listener to be invoked when the POSITIVE button of the dialog is pressed.
+        // Note: Set the OnClickListener using the anonymous class.
+        aBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Actions to perform when the "OK" button is clicked.
+            }
+        });
+        // "AlertDialog" => A subclass of Dialog that can display one, two or three buttons.
+        // "aBuilder.create()" => Create an AlertDialog with the arguments supplied to this builder.
+        AlertDialog dialog = aBuilder.create();
+        // Display the alert dialog.
+        dialog.show();
     }
 
 

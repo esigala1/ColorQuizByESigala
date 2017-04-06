@@ -19,4 +19,7 @@
     <string name="msg_system_error">Sorry... Could not initialize the game correctly.</string>
     <string name="msg_correct_answer">Correct!!</string>
     <string name="msg_wrong_answer">Wrong... It is <xliff:g id="correctAnswer" example="Yellow">%s</xliff:g>!!</string>
+    <string name="msg_end_title">End of Quiz</string>
+    <string name="msg_well_done">Well done!! Your score is <xliff:g id="score" example="10">%d</xliff:g>!!</string>
+    <string name="msg_not_so_good">Not so good... Your score is <xliff:g id="score" example="10">%d</xliff:g>.</string>
     </resources>

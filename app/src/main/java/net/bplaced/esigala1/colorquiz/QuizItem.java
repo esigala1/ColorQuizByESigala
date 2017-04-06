@@ -1,5 +1,7 @@
 package net.bplaced.esigala1.colorquiz;
 
+import android.util.Log;
+
 import java.util.Random;
 
 /**
@@ -10,29 +12,25 @@ public class QuizItem {
 
     // Declare a Random object.
     Random r;
-    String quizColorName, quizColorValue, rndColorName2, rndColorName3;
+    String quizColorName, quizColorValue, rndColorName2 = "", rndColorName3 = "";
 
-    int minColor = 0, maxColorRest;
+    int minColor = 0, maxColorRest, currentPosition;
 
 
     // Constructor
     public QuizItem(){
-
         // Initialize the random object.
         r = new Random();
-
         // Current maxCurrent number of colors.
         // Note: Decrease by one, because we start the counting from zero!!
         maxColorRest = QuizActivity.quizColorsRest.size() - 1;
-
         // Get a random number [min, maxCurrent] for quiz color.
-        int randomColor = r.nextInt(maxColorRest - minColor + 1) + minColor;
+        currentPosition = r.nextInt(maxColorRest - minColor + 1) + minColor;
         // Set the Name of the Quiz Color.
-        quizColorName = QuizActivity.quizColorsRest.get(randomColor)[0];
+        quizColorName = QuizActivity.quizColorsRest.get(currentPosition)[0];
+        Log.i(MainActivity.TAG_INFO, "Quiz Color = " + quizColorName + " ~ Position from rest list = " + currentPosition);
         // Set the Value of the Quiz Color.
-        quizColorValue = QuizActivity.quizColorsRest.get(randomColor)[1];
-        // Remove the selected color from the list.
-        QuizActivity.quizColorsRest.remove(randomColor);
+        quizColorValue = QuizActivity.quizColorsRest.get(currentPosition)[1];
         // Get extra two random colors.
         getExtraRandomColors();
     }
@@ -52,6 +50,9 @@ public class QuizItem {
 
     public String getRndColorName3(){
         return rndColorName3;
+    }
+    public int getCurrentPosition(){
+        return currentPosition;
     }
 
 
