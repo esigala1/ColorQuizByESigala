@@ -7,7 +7,7 @@ Developed for the **Udacity** course **_"Android Development for Beginners by Go
 
 <div align="center">
   <br><br>
-  <img src="https://c2.staticflickr.com/4/3947/33476491620_2de1fa4a3e.jpg" height="400" width="240"></img>
+  <img src="https://c1.staticflickr.com/3/2871/33725719612_f70d926d98.jpg" height="400" width="240"></img>
   <br><br>
 </div>
 
