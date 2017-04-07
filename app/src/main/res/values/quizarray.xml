@@ -2,39 +2,39 @@
 <resources>
 
     <string-array name="colorNames">
+        <item name="Jungle">Jungle</item>
         <item name="Lime">Lime</item>
         <item name="Yellow">Yellow</item>
-        <item name="Khaki">Khaki</item>
         <item name="Bisque">Bisque</item>
-        <item name="Tan">Tan</item>
-        <item name="Olive">Olive</item>
-        <item name="Chocolate">Chocolate</item>
-        <item name="Sienna">Sienna</item>
+        <item name="Wood">Wood</item>
+        <item name="Mocha">Mocha</item>
+        <item name="Teal">Teal</item>
+        <item name="Grapefruit">Grapefruit</item>
         <item name="Navy">Navy</item>
         <item name="Indigo">Indigo</item>
         <item name="Magenta">Magenta</item>
         <item name="Orchid">Orchid</item>
         <item name="Cyan">Cyan</item>
         <item name="Turquoise">Turquoise</item>
-        <item name="Azure">Azure</item>
+        <item name="Iceberg">Iceberg</item>
     </string-array>
 
     <string-array name="colorValues">
+        <item name="Jungle">#347C2C</item>
         <item name="Lime">#00FF00</item>
         <item name="Yellow">#FFFF00</item>
-        <item name="Khaki">#F0E68C</item>
         <item name="Bisque">#FFE4C4</item>
-        <item name="Tan">#D2B48C</item>
-        <item name="Olive">#808000</item>
-        <item name="Chocolate">#D2691E</item>
-        <item name="Sienna">#A0522D</item>
+        <item name="Wood">#966F33</item>
+        <item name="Mocha">#493D26</item>
+        <item name="Teal">#008080</item>
+        <item name="Grapefruit">#DC381F</item>
         <item name="Navy">#000080</item>
         <item name="Indigo">#4B0082</item>
         <item name="Magenta">#FF00FF</item>
         <item name="Orchid">#DA70D6</item>
         <item name="Cyan">#00FFFF</item>
         <item name="Turquoise">#40E0D0</item>
-        <item name="Azure">#F0FFFF</item>
+        <item name="Iceberg">#56A5EC</item>
     </string-array>
 
 </resources>
