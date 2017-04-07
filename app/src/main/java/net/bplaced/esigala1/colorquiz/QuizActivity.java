@@ -50,7 +50,6 @@ public class QuizActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
         tvTitle = (TextView) findViewById(R.id.text_view_quiz_title);
         tvAnswer = (TextView) findViewById(R.id.text_view_answer);
         vColor = (View) findViewById(R.id.view_color);

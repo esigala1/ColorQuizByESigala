@@ -10,21 +10,21 @@
     tools:context=".StartActivity">
 
     <TextView
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
         android:id="@+id/text_view_start_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/level2"
         android:text="@string/player"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_h1"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
     <Button
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_margin="@dimen/level3"
         android:layout_marginTop="@dimen/level1"
         android:onClick="onClickStart"
