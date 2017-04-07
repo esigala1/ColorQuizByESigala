@@ -21,6 +21,13 @@ public class QuizActivity extends MainActivity {
 
     public static final String SCORE = "score";
     public static final String QUIZ_NUM = "quiz_num";
+    public static final String QUIZ_ARRAY_ALL = "quiz_array_all";
+    public static final String QUIZ_ARRAY_REST = "quiz_array_rest";
+    public static final String QUIZ_ITEM_COLOR_NAME = "item_quizColorName";
+    public static final String QUIZ_ITEM_COLOR_VALUE = "item_quizColorValue";
+    public static final String QUIZ_ITEM_COLOR_NAME_2 = "item_rndColorName2";
+    public static final String QUIZ_ITEM_COLOR_NAME_3 = "item_rndColorName3";
+    public static final String QUIZ_ITEM_CURRENT_POSITION = "item_currentPosition";
 
     TextView tvTitle, tvAnswer;
     View vColor;
@@ -54,17 +61,10 @@ public class QuizActivity extends MainActivity {
         btnSubmit = (Button) findViewById(R.id.button_submit);
         btnNext = (Button) findViewById(R.id.button_next);
 
-        // Initialize All Quiz Colors.
-        quizColorsAll = initializeQuizColors();
-        // Initialize The "quizColorsRest".
-        quizColorsRest = new ArrayList<>();
-        // Add the content of "quizColorsAll" into "quizColorsRest".
-        quizColorsRest.addAll(quizColorsAll);
-        // As max color set the total number of all colors.
-        // Note: Decrease by one, because we start the counting from zero!!
-        maxColor = quizColorsAll.size() - 1;
         // Initialize the random object.
         r = new Random();
+
+        // As max color set the total number of all colors.
         // If there is no saved state, then...
         if (savedInstanceState == null) {
             score = 0;
@@ -73,6 +73,19 @@ public class QuizActivity extends MainActivity {
             if(extras != null) {
                 name = extras.getString(NAME);
             }
+            // Initialize All Quiz Colors.
+            quizColorsAll = initializeQuizColors();
+            // Initialize The "quizColorsRest".
+            quizColorsRest = new ArrayList<>();
+            // Add the content of "quizColorsAll" into "quizColorsRest".
+            quizColorsRest.addAll(quizColorsAll);
+
+            // Note: Decrease by one, because we start the counting from zero!!
+            maxColor = quizColorsAll.size() - 1;
+
+            // Initialize the QuizItem object.
+            quizItem = new QuizItem();
+
         }
         // There is a saved state, so restore it...
         else
@@ -80,7 +93,23 @@ public class QuizActivity extends MainActivity {
             name = savedInstanceState.getString(NAME);
             score = savedInstanceState.getInt(SCORE);
             currentQuizNum = savedInstanceState.getInt(QUIZ_NUM);
+            // Initialize All Quiz Colors.
+            quizColorsAll = (ArrayList<String[]>) savedInstanceState.getSerializable(QUIZ_ARRAY_ALL);
+            // Initialize Quiz Rest Colors.
+            quizColorsRest = (ArrayList<String[]>) savedInstanceState.getSerializable(QUIZ_ARRAY_REST);
+
+            // Note: Decrease by one, because we start the counting from zero!!
+            maxColor = quizColorsAll.size() - 1;
+            // Initialize the QuizItem object.
+            quizItem = new QuizItem(
+                    savedInstanceState.getString(QUIZ_ITEM_COLOR_NAME),
+                    savedInstanceState.getString(QUIZ_ITEM_COLOR_VALUE),
+                    savedInstanceState.getString(QUIZ_ITEM_COLOR_NAME_2),
+                    savedInstanceState.getString(QUIZ_ITEM_COLOR_NAME_3),
+                    savedInstanceState.getInt(QUIZ_ITEM_CURRENT_POSITION)
+            );
         }
+
     }
 
     @Override
@@ -90,16 +119,21 @@ public class QuizActivity extends MainActivity {
         outState.putString(NAME, name);
         outState.putInt(SCORE, score);
         outState.putInt(QUIZ_NUM, currentQuizNum);
-
-        // TODO Include more variables.
+        outState.putSerializable(QUIZ_ARRAY_ALL, quizColorsAll);
+        outState.putSerializable(QUIZ_ARRAY_REST, quizColorsRest);
+        outState.putString(QUIZ_ITEM_COLOR_NAME, quizItem.getQuizColorName());
+        outState.putString(QUIZ_ITEM_COLOR_VALUE, quizItem.getQuizColorValue());
+        outState.putString(QUIZ_ITEM_COLOR_NAME_2, quizItem.getRndColorName2());
+        outState.putString(QUIZ_ITEM_COLOR_NAME_3, quizItem.getRndColorName3());
+        outState.putInt(QUIZ_ITEM_CURRENT_POSITION, quizItem.getCurrentPosition());
     }
 
     @Override
     protected void onResume() {
         Log.i(TAG_INFO, "QuizActivity onResume()");
         super.onResume();
-        // Display a new quiz.
-        displayNewQuiz();
+        // Display the quiz.
+        displayQuiz();
     }
 
     @Override
@@ -156,12 +190,10 @@ public class QuizActivity extends MainActivity {
     /**
      *  Method to display a new quiz.
      */
-    private void displayNewQuiz(){
+    private void displayQuiz(){
         Log.i(TAG_INFO, "====================================================");
         Log.i(TAG_INFO, "Quiz = " + currentQuizNum + "/" + quizColorsAll.size());
         Log.i(TAG_INFO, "quizColorsRest.size() = " + quizColorsRest.size());
-        // Initialize the QuizItem object.
-        quizItem = new QuizItem();
         // Set the title.
         tvTitle.setText(getResources().getString(R.string.quiz_num, currentQuizNum, maxColor + 1));
         // Set the Value of the Quiz color in the View.
@@ -305,8 +337,10 @@ public class QuizActivity extends MainActivity {
             rb3.setEnabled(true);
             tvAnswer.setText(getResources().getString(R.string.quiz_submit_answer));
             tvAnswer.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            // Display a new quiz.
-            displayNewQuiz();
+            // Initialize a new QuizItem object.
+            quizItem = new QuizItem();
+            // Display the quiz.
+            displayQuiz();
             // Hide the Next Button.
             btnNext.setVisibility(View.GONE);
             // Display the Submit Button.

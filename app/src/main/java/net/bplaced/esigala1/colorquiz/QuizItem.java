@@ -17,7 +17,7 @@ public class QuizItem {
     int minColor = 0, maxColorRest, currentPosition;
 
 
-    // Constructor
+    // Constructor with no arguments.
     public QuizItem(){
         // Initialize the random object.
         r = new Random();
@@ -33,6 +33,16 @@ public class QuizItem {
         quizColorValue = QuizActivity.quizColorsRest.get(currentPosition)[1];
         // Get extra two random colors.
         getExtraRandomColors();
+    }
+
+    // Constructor with 5 arguments.
+    public QuizItem(String quizColorName, String quizColorValue,
+                    String rndColorName2, String rndColorName3, int currentPosition){
+        this.quizColorName = quizColorName;
+        this.quizColorValue = quizColorValue;
+        this.rndColorName2 = rndColorName2;
+        this.rndColorName3 = rndColorName3;
+        this.currentPosition = currentPosition;
     }
 
     // Getters.
@@ -51,10 +61,10 @@ public class QuizItem {
     public String getRndColorName3(){
         return rndColorName3;
     }
+
     public int getCurrentPosition(){
         return currentPosition;
     }
-
 
     /**
      * This method is called to get extra random colors.
