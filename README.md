@@ -1,7 +1,7 @@
 Color Quiz by Effie Sigala
 ===================================
 
-An android app quiz.
+An android app quiz about colors.
 
 Developed for the **Udacity** course **_"Android Development for Beginners by Google"_**.
 
@@ -13,6 +13,8 @@ Developed for the **Udacity** course **_"Android Development for Beginners by Go
 
 Useful Links
 --------------
+
+Google Play Store: [https://play.google.com/store/apps/details?id=net.bplaced.esigala1.colorquiz](https://play.google.com/store/apps/details?id=net.bplaced.esigala1.colorquiz)
 
 GitHub: [esigala1/ColorQuizByESigala](https://github.com/esigala1/ColorQuizByESigala)
 
