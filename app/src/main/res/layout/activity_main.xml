@@ -49,14 +49,8 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/level3"
+        style="@style/QuizButtonStyle"
         android:onClick="onClickQuiz"
-        android:paddingBottom="@dimen/level3"
-        android:paddingTop="@dimen/level3"
-        android:text="@string/btn_quiz"
-        android:textSize="@dimen/text_size_h3"
-        android:textStyle="bold" />
+        android:text="@string/btn_quiz"/>
 
 </LinearLayout>
