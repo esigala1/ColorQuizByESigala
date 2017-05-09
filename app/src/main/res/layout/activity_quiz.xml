@@ -84,32 +84,20 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Button to Submit the answer. -->
     <Button
         android:id="@+id/button_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/level3"
+        style="@style/QuizButtonStyle"
         android:onClick="onClickSubmit"
-        android:paddingBottom="@dimen/level3"
-        android:paddingTop="@dimen/level3"
-        android:text="@string/btn_submit"
-        android:textSize="@dimen/text_size_h3"
-        android:textStyle="bold" />
+        android:text="@string/btn_submit"/>
 
+    <!-- Button to go to the next question. -->
     <Button
         android:id="@+id/button_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/level3"
+        style="@style/QuizButtonStyle"
         android:background="@color/color_btn_next"
         android:onClick="onClickNext"
-        android:paddingBottom="@dimen/level3"
-        android:paddingTop="@dimen/level3"
         android:text="@string/btn_next"
-        android:textSize="@dimen/text_size_h3"
-        android:textStyle="bold"
         android:visibility="gone" />
 
 </LinearLayout>

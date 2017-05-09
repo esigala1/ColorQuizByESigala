@@ -33,4 +33,16 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:text">@string/answer_item</item>
     </style>
+
+    <!-- Quiz Button Style. -->
+    <style name="QuizButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_margin">@dimen/level3</item>
+        <item name="android:paddingBottom">@dimen/level3</item>
+        <item name="android:paddingTop">@dimen/level3</item>
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
