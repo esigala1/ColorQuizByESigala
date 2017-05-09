@@ -5,6 +5,8 @@
     <string name="enter_your_name">Enter your name:</string>
     <string name="hint_name">Your name</string>
     <string name="btn_quiz">Quiz</string>
+    <string name="checkbox_ready">Check when you are ready</string>
+    <string name="msg_checkbox_start">Please check the checkbox first.</string>
     <string name="msg_enter_name">Please enter your name first.</string>
     <string name="player">Player</string>
     <string name="btn_start">Start the quiz</string>

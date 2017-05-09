@@ -15,9 +15,19 @@
         android:text="@string/player" />
 
     <Button
+        android:id="@+id/button_start"
         style="@style/QuizButtonStyle"
         android:layout_marginTop="@dimen/level1"
         android:onClick="onClickStart"
-        android:text="@string/btn_start"/>
+        android:text="@string/btn_start" />
+
+    <CheckBox
+        android:id="@+id/checkbox_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_start"
+        android:layout_below="@id/button_start"
+        android:text="@string/checkbox_ready"
+        android:textSize="@dimen/text_size_h5" />
 
 </RelativeLayout>

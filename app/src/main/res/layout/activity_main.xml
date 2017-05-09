@@ -15,42 +15,45 @@
         style="@style/HeaderTextView"
         android:lineSpacingExtra="@dimen/level1"
         android:text="@string/welcome"
-        android:textColor="@color/colorPrimary"
         android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_huge"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
         android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/text_view_main_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/level1"
-            android:gravity="center_vertical"
-            android:text="@string/enter_your_name"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_h2"
-            android:textStyle="italic"/>
-
-        <EditText
-            android:layout_marginTop="@dimen/level2"
-            android:id="@+id/edit_text_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textSize="@dimen/text_size_h2"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_name" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_main_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_your_name"
+                android:textSize="@dimen/text_size_h2"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/edit_text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/level2"
+                android:hint="@string/hint_name"
+                android:textSize="@dimen/text_size_h2" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         style="@style/QuizButtonStyle"
         android:onClick="onClickQuiz"
-        android:text="@string/btn_quiz"/>
+        android:text="@string/btn_quiz" />
 
 </LinearLayout>
