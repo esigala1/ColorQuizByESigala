@@ -23,6 +23,17 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
+    <!-- Header TextView Style. -->
+    <style name="HeaderTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_margin">@dimen/level2</item>
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
     <!-- RadioButton Style. -->
     <style name="RadioButtonStyle">
         <item name="android:layout_width">0dp</item>
