@@ -83,6 +83,7 @@
         android:id="@+id/button_submit"
         style="@style/QuizButtonStyle"
         android:onClick="onClickSubmit"
+        android:background="@color/green"
         android:text="@string/btn_submit"/>
 
     <!-- Button to go to the next question. -->
