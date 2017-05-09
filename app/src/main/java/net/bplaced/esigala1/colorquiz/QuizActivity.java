@@ -239,6 +239,7 @@ public class QuizActivity extends MainActivity {
 
     /**
      * This method is called to display the correct answer in the TextView "text_view_answer".
+     * @param isCorrect is the boolean variable to indicate if the answer is correct or not.
      */
     private void displayAnswer(boolean isCorrect){
         if (isCorrect){
@@ -364,8 +365,11 @@ public class QuizActivity extends MainActivity {
         }
     }
 
-
-    // A method to display an alert dialog.
+    /**
+     * A method to display an alert dialog.
+     * @param title is the Title of the dialog.
+     * @param message is the Message of the dialog.
+     */
     public void messageShow(String title, String message){
         // Create a builder for an alert dialog, that uses the default alert dialog theme.
         AlertDialog.Builder aBuilder = new AlertDialog.Builder(this);
@@ -390,5 +394,4 @@ public class QuizActivity extends MainActivity {
         // Display the alert dialog.
         dialog.show();
     }
-
 }

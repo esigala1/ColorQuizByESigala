@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // When the button "Quiz" is pressed, execute the following method.
+    /**
+     * When the button "Quiz" is pressed, execute the following method.
+     */
     public void onClickQuiz(View view){
         Log.i(TAG_INFO, "Button Quiz Pressed.");
         // If the name is not entered, then...

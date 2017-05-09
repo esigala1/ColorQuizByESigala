@@ -47,7 +47,9 @@ public class StartActivity extends MainActivity {
         outState.putInt(QuizActivity.SCORE, score);
     }
 
-    // When the button "Start" is pressed, execute the following method.
+    /**
+     * When the button "Start" is pressed, execute the following method.
+     */
     public void onClickStart(View view){
         Log.i(TAG_INFO, "Button Start Pressed.");
         // Create an intent to start another activity.
@@ -57,6 +59,4 @@ public class StartActivity extends MainActivity {
         // Start an instance of the "StartActivity" specified by the intent.
         startActivity(intent);
     }
-
-
 }

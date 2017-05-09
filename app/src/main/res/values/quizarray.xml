@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- The Color Names. -->
     <string-array name="colorNames">
         <item name="Jungle">Jungle</item>
         <item name="Lime">Lime</item>
@@ -18,7 +18,7 @@
         <item name="Turquoise">Turquoise</item>
         <item name="Iceberg">Iceberg</item>
     </string-array>
-
+    <!-- The Color Values. -->
     <string-array name="colorValues">
         <item name="Jungle">#347C2C</item>
         <item name="Lime">#00FF00</item>
@@ -36,5 +36,4 @@
         <item name="Turquoise">#40E0D0</item>
         <item name="Iceberg">#56A5EC</item>
     </string-array>
-
 </resources>

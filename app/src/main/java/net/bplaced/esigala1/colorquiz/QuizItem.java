@@ -10,12 +10,9 @@ import java.util.Random;
 
 public class QuizItem {
 
-    // Declare a Random object.
-    Random r;
+    Random r; // Declare a Random object.
     String quizColorName, quizColorValue, rndColorName2 = "", rndColorName3 = "";
-
     int minColor = 0, maxColorRest, currentPosition;
-
 
     // Constructor with no arguments.
     public QuizItem(){

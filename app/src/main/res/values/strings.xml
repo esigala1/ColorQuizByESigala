@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Color Quiz</string>
     <string name="welcome">Welcome</string>
@@ -22,4 +23,4 @@
     <string name="msg_end_title">End of Quiz</string>
     <string name="msg_well_done">Well done <xliff:g id="name" example="Effie">%s</xliff:g>!! Your score is <xliff:g id="score" example="10">%d</xliff:g>!!</string>
     <string name="msg_not_so_good">Not so good <xliff:g id="name" example="Effie">%s</xliff:g>... Your score is <xliff:g id="score" example="10">%d</xliff:g>...</string>
-    </resources>
+</resources>
