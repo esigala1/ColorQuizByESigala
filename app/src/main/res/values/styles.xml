@@ -12,14 +12,17 @@
         <item name="android:textViewStyle">@style/App_TextViewStyle</item>
         <item name="android:editTextStyle">@style/App_EditTextStyle</item>
     </style>
+
     <!-- TextView Style. -->
     <style name="App_TextViewStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
+
     <!-- EditText Style. -->
     <style name="App_EditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
+
     <!-- RadioButton Style. -->
     <style name="RadioButtonStyle">
         <item name="android:layout_width">0dp</item>
